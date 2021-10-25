@@ -26,24 +26,16 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <div className="w-10/12 mx-auto mt-10 min-h-full">
         <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
+
       </div>
+      <footer className="h-40 bg-purple-800 text-gray-300 text-xs font-extralight grid grid-cols-4 gap-4">
+        <div className="flex justify-center items-center">No © {new Date().getFullYear()}, Built with</div>
+        <div className="flex justify-center items-center"><a href="https://www.gatsbyjs.com">Gatsby</a></div>
+        <div className="flex justify-center items-center"><a href="https://www.graphcms.com">GraphCMS</a></div>
+        <div className="flex justify-center items-center"><a href="https://www.tailwindcss.com">Tailwind CSS</a></div>
+      </footer>
     </>
   )
 }
