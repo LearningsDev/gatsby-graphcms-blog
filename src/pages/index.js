@@ -32,14 +32,14 @@ const IndexPage = ({ data }) => (
 export default IndexPage
 
 export const query = graphql`
- query {
+ query{
    cms {
-     posts {
-       title
-       tags
+     posts{
        author {
          name
        }
+       title
+       tags
      }
    }
  }
