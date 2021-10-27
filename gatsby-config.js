@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Gatsby GraphCMS Blog`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
@@ -36,7 +36,7 @@ module.exports = {
       resolve: `gatsby-source-graphql`,
       options: {
         fieldName: `cms`,
-        url: `https://api-us-west-2.graphcms.com/v2/${process.env.GRAPHCMS_API_KEY}/master`,
+        url: `https://api-us-west-2.graphcms.com/v2/ckv8nd2e669c801yz1wblbyk9/master`,  //`https://api-us-west-2.graphcms.com/v2/${process.env.GRAPHCMS_API_KEY}/master`,
         typeName: `GraphCMS`,
         refetchInterval: 60,
       },
