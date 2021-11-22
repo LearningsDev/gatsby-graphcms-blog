@@ -1,39 +1,7 @@
 const path = require("path")
 
-// exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions
-//   const { result } = await graphql(`
-//       {
-//         cms {
-//           posts {
-//             title
-//             author {
-//               id
-//               name
-//             }
-//             slug
-//             content {
-//               markdown
-//             }
-//           }
-//         }
-//       }
-//     `)
-
-//   result.data.cms.posts.foreach((post) => {
-//     console.log(post);
-//     actions.createPage({
-//       path: `/posts/${post.slug}`,
-//       component: require.resolve(`./src/pages/templates/blog-post.js`),
-//       context: { post: post },
-//     })
-//   })
-// }
-
-
-
 exports.createPages = async function ({ actions, graphql }) {
-  graphql(`
+  await graphql(`
     {
       cms {
         posts {
@@ -52,7 +20,6 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `).then(res => {
     res.data.cms.posts.forEach(post => {
-      //  console.log(post)
       actions.createPage({
         path: `/posts/${post.slug}`,
         component: require.resolve(`./src/pages/templates/blog-post.js`),
@@ -62,6 +29,32 @@ exports.createPages = async function ({ actions, graphql }) {
       })
     })
   })
+
+  await graphql(`
+  {
+    cms {
+      posts {
+        id
+        title
+        tags
+      }
+    }
+  }
+`).then(res => {
+    res.data.cms.posts.forEach(post => {
+      post.tags.forEach(tag => {
+        actions.createPage({
+          path: `/${tag}`,
+          component: require.resolve(`./src/pages/templates/tag-page.js`),
+          context: {
+            tag: [tag],
+          },
+        })
+      })
+    })
+  })
+
+
 }
 
 
